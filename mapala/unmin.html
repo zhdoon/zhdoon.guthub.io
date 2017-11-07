@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Вся MAPALA на карте</title>
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+<style>
+body{margin:0;padding:0;font-family: 'Comfortaa', cursive;color:#333;}
+#side::-webkit-scrollbar {
+    width: .5em;
+    height: .5em
+}
+#side::-webkit-scrollbar-button {
+    background: #ccc
+}
+#side::-webkit-scrollbar-track-piece {
+    background: #888
+}
+#side::-webkit-scrollbar-thumb {
+    background: #eee
+}
+#side {
+    width: 30%;
+	position: absolute;
+    left:0;
+	top:0;
+    padding:0;
+	height:100%;
+	overflow:auto;
+}
+
+
+#side .item {
+   background: white;
+    padding: 15px;
+    box-shadow: 0 5px 20px -5px black;
+    margin: 20px;
+    border-radius: 3px;
+    font-size: 9pt;
+	overflow:hidden;
+	transition:1s all ease;
+	transform:translate3d(0px, -100px, 0px);
+	position:absolute;
+	opacity:0;
+	
+}
+#side .item.anim{
+	transform:translate3d(0px, 0px, 0px);
+	opacity:1;
+	transition:1s all ease;
+	position:relative;
+}
+
+
+.item img{
+display:block;
+width:100%;
+max-width:100%;
+height:auto
+}
+#map{
+display:inline-block;
+width:100%;
+height:100%;
+}
+section{
+width:100%
+display:block;
+height:100vh;
+
+overflow:hidden;
+margin:0;
+padding:0;
+}
+
+</style>
+<script>var indexPage=false,isBlog=false;</script>
+<script src="https://chain.cf/scripts/blog.js"></script>
+<script src="https:/maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+
+
+    
+  </head>
+  <body>
+   <section>
+   <div id="map"></div>
+   <div id="side">
+   
+ Загрузка...
+   </div>
+   <section>
+  
+  <script>
+  "use strict";
+  var index = 0;
+ 
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 5,
+      center: new google.maps.LatLng(50.0593325,14.1854451),
+      panControl: false,
+      	
+      	mapTypeControl: false,
+      	streetViewControl: false,
+      	mapTypeId: google.maps.MapTypeId.ROADMAP,
+      	scrollwheel: false,
+		styles:  [
+    {
+        "featureType": "water",
+        "stylers": [
+            {
+                "color": "#0e171d"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "stylers": [
+            {
+                "color": "#1e303d"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "stylers": [
+            {
+                "color": "#1e303d"
+            }
+        ]
+    },
+    {
+        "featureType": "poi.park",
+        "stylers": [
+            {
+                "color": "#1e303d"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "stylers": [
+            {
+                "color": "#182731"
+            },
+            {
+                "visibility": "simplified"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels.icon",
+        "stylers": [
+            {
+                "color": "#f0c514"
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#1e303d"
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "transit",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#e77e24"
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#FFFFFF"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "simplified"
+            },
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    }
+]
+	  
+    });
+
+ var infowindow =  new google.maps.InfoWindow({
+        content: "",
+		maxWidth: 220
+    });
+
+    
+   function itemShow(){setTimeout(function() {
+                document.querySelector(".item").classList.add('anim');
+            }, 200); }
+   
+
+var marker;
+function NEXT_POSTS(nextset) {
+steem.api.getDiscussionsByCreated({ "start_permlink": nextset.start_permlink, "start_author": nextset.start_author, "select_tags":["mapala"], "limit": 30 }, function (err, post) {
+	var len = post.length;	
+	var lst = len - 1;
+	var marker;
+	var i;
+	for (i = 0;  i < len; i++) { 
+			var meta = JSON.parse(post[i].json_metadata);
+			if (typeof meta.coordinates !== "undefined" && meta.coordinates.length > 10) {
+				var markers = new Array();
+					var logo = "http://i.imgur.com/IyCw18s.png";
+					var coord = meta.coordinates;
+					var lon = coord.substring(0, coord.indexOf(','));
+					var lan = coord.substring(coord.indexOf(',')).substring(1);
+					var imgpost = (typeof meta.image === 'undefined') ? logo : meta.image[0];
+					var markercontent = '<h4>'+post[i].title+'</h4><p>'+meta.location+'</p><h3>'+post[i].total_payout_value+'/'+post[i].total_pending_payout_value+'</h3><img style="width:100%;height:auto;" src="'+imgpost+'"/><p><p><a href="https://mapala.net/'+post[i].author+'/'+post[i].permlink+'">Читать на MAPALA</a></p>'+post[i].body.replace(/<\/?[^>]+(>|$)/g, "").slice(0, 100)+'</p>';
+					var putHtml = '<div class="item"><b>'+post[i].title+'</b><p>'+meta.location+'</p><h3>'+post[i].total_pending_payout_value+'/'+post[i].total_payout_value+'</h3><img width="200" src="'+imgpost+'"/> <p><a href="https://mapala.net/'+post[i].author+'/'+post[i].permlink+'">Читать на MAPALA</a></p><p>'+post[i].body.replace(/<\/?[^>]+(>|$)/g, "").slice(0, 100)+'</p></div>';
+						
+					
+					
+							marker = new google.maps.Marker({
+								position: new google.maps.LatLng(lon, lan),
+								map: map,
+								icon: 'https://chain.cf/img/mapalamarker.png'
+							});
+							
+					bindInfoWindow(marker, map, infowindow, markercontent, putHtml);
+					
+							
+					
+					
+			}
+			if (i == lst) {
+				nextset = {
+				start_permlink:post[lst].permlink,
+				start_author:post[lst].author
+				}
+				if (len > 1) {
+						NEXT_POSTS(nextset);
+					} else {
+						console.log("Загружены все посты")
+				}
+				
+			}
+			
+			
+			
+		}
+
+
+
+		
+	if (err) {
+			console.log(err);
+		}	
+		
+	});	
+};
+
+
+
+var nextset = {
+		start_permlink: '',
+		start_author: ''
+	};
+
+	
+steem.api.getDiscussionsByCreated({"select_tags":["mapala"], "limit": 30 }, function (err, post) {
+	var len = post.length;	
+	var lst = len - 1;
+	var i;
+	for (i = 0;  i < len; i++) { 
+			var meta = JSON.parse(post[i].json_metadata);
+			if (typeof meta.coordinates !== "undefined" && meta.coordinates.length > 10) {
+				var markers = new Array();
+					var logo = "http://i.imgur.com/IyCw18s.png";
+					var coord = meta.coordinates;
+					var lon = coord.substring(0, coord.indexOf(','));
+					var lan = coord.substring(coord.indexOf(',')).substring(1);
+					var imgpost = (typeof meta.image === 'undefined') ? logo : meta.image[0];
+					var markercontent = '<h4>'+post[i].title+'</h4><p>'+meta.location+'</p><h3>'+post[i].total_payout_value+'/'+post[i].total_pending_payout_value+'</h3><img style="width:100%;height:auto;" src="'+imgpost+'"/><p><p><a href="https://mapala.net/'+post[i].author+'/'+post[i].permlink+'">Читать на MAPALA</a></p>'+post[i].body.replace(/<\/?[^>]+(>|$)/g, "").slice(0, 100)+'</p>';
+					var putHtml = '<div class="item"><b>'+post[i].title+'</b><p>'+meta.location+'</p><h3>'+post[i].total_pending_payout_value+'/'+post[i].total_payout_value+'</h3><img width="200" src="'+imgpost+'"/> <p><a href="https://mapala.net/'+post[i].author+'/'+post[i].permlink+'">Читать на MAPALA</a></p><p>'+post[i].body.replace(/<\/?[^>]+(>|$)/g, "").slice(0, 100)+'</p></div>';
+							
+							marker = new google.maps.Marker({
+								position: new google.maps.LatLng(lon, lan),
+								map: map,
+								icon: 'https://chain.cf/img/mapalamarker.png'
+							});
+							
+							bindInfoWindow(marker, map, infowindow, markercontent, putHtml);
+						
+								
+					
+					
+			}
+			if (i == lst) {
+				nextset = {
+				start_permlink:post[lst].permlink,
+				start_author:post[lst].author
+				}
+				NEXT_POSTS(nextset);
+			}
+			
+			
+		};
+
+
+
+		
+	if (err) {
+			console.log(err);
+		}	
+});
+	  
+	 
+
+	  
+function bindInfoWindow(marker, map, infowindow, markercontent, putHtml) {
+	document.getElementById('side').insertAdjacentHTML('afterbegin', putHtml);
+					itemShow();
+	
+    marker.addListener('click', function() {
+        infowindow.setContent(markercontent);
+        infowindow.open(map, this);
+    });
+}  
+	  
+    </script>
+
+	
+  </body>
+</html>

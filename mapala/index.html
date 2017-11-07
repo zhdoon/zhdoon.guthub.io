@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Вся MAPALA на карте</title>
+<link rel="apple-touch-icon" sizes="180x180" href="/mapala/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/mapala/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/mapala/favicon-16x16.png">
+<link rel="manifest" href="/mapala/manifest.json">
+<link rel="mask-icon" href="/mapala/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+<link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+<style>
+#side,#side .item{position:absolute}body{margin:0;padding:0;font-family:Comfortaa,cursive;color:#333}#side::-webkit-scrollbar{width:.5em;height:.5em}#side::-webkit-scrollbar-button{background:#ccc}#side::-webkit-scrollbar-track-piece{background:#888}#side::-webkit-scrollbar-thumb{background:#eee}#side{width:30%;left:0;top:0;padding:0;height:100%;overflow:auto}#side .item{background:#fff;padding:15px;box-shadow:0 5px 20px -5px #000;margin:20px;border-radius:3px;font-size:9pt;overflow:hidden;transition:1s all ease;transform:translate3d(0,-100px,0);opacity:0}#side .item.anim{transform:translate3d(0,0,0);opacity:1;transition:1s all ease;position:relative}.item img{display:block;width:100%;max-width:100%;height:auto}#map{display:inline-block;width:100%;height:100%}section{width:100%
+display:block;height:100vh;overflow:hidden;margin:0;padding:0}
+header {
+    padding: 2%;
+    text-align: right;
+    background: #4ba1f1 url(http://i.imgur.com/IyCw18s.png) left no-repeat;
+    color: white;
+    background-size: contain;
+    font-size: 14px;
+    position: absolute;
+    z-index: 999;
+    width: 96%;
+    box-shadow: 0 0 25px black;
+}
+ </style>
+<script>var indexPage=false,isBlog=false;</script>
+<script src="https://chain.cf/scripts/blog.js"></script>
+<script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDaKws1vkLkuxRcvJpYuMfB2drqX8VBoMI"></script>
+</head>
+  <body>
+    <header>Вся <b>MAPALA</b> на одной карте! <a href="https://golos.io/@vik">@vik</a></header>
+   <section>
+   
+   <div id="map"></div>
+   <div id="side">
+    Загружаются все посты с маркерами...
+   </div>
+   <section>
+  
+<script>
+"use strict";function itemShow(){setTimeout(function(){document.querySelector(".item").classList.add("anim")},200)}function NEXT_POSTS(e){steem.api.getDiscussionsByCreated({start_permlink:e.start_permlink,start_author:e.start_author,select_tags:["mapala"],limit:30},function(t,a){var i,o,n=a.length,r=n-1;for(o=0;n>o;o++){var l=JSON.parse(a[o].json_metadata);if("undefined"!=typeof l.coordinates&&l.coordinates.length>10){var s=(new Array,"http://i.imgur.com/IyCw18s.png"),p=l.coordinates,m=p.substring(0,p.indexOf(",")),d=p.substring(p.indexOf(",")).substring(1),f="undefined"==typeof l.image?s:l.image[0],c="<h4>"+a[o].title+"</h4><p>"+l.location+"</p><h3>"+a[o].total_payout_value+"/"+a[o].total_pending_payout_value+'</h3><img style="width:100%;height:auto;" src="'+f+'"/><p><p><a href="https://mapala.net/'+a[o].author+"/"+a[o].permlink+'">Читать на MAPALA</a></p>'+a[o].body.replace(/<\/?[^>]+(>|$)/g,"").slice(0,100)+"</p>",u='<div class="item"><b>'+a[o].title+"</b><p>"+l.location+"</p><h3>"+a[o].total_pending_payout_value+"/"+a[o].total_payout_value+'</h3><img width="200" src="'+f+'"/> <p><a href="https://mapala.net/'+a[o].author+"/"+a[o].permlink+'">Читать на MAPALA</a></p><p>'+a[o].body.replace(/<\/?[^>]+(>|$)/g,"").slice(0,100)+"</p></div>";i=new google.maps.Marker({position:new google.maps.LatLng(m,d),map:map,icon:"https://chain.cf/img/mapalamarker.png"}),bindInfoWindow(i,map,infowindow,c,u)}o==r&&(e={start_permlink:a[r].permlink,start_author:a[r].author},n>1?NEXT_POSTS(e):console.log("Загружены все посты"))}t&&console.log(t)})}function bindInfoWindow(e,t,a,i,o){document.getElementById("side").insertAdjacentHTML("afterbegin",o),itemShow(),e.addListener("click",function(){a.setContent(i),a.open(t,this)})}var index=0,map=new google.maps.Map(document.getElementById("map"),{zoom:5,center:new google.maps.LatLng(50.0593325,14.1854451),panControl:!1,mapTypeControl:!1,streetViewControl:!1,mapTypeId:google.maps.MapTypeId.ROADMAP,scrollwheel:!1,styles:[{featureType:"water",stylers:[{color:"#0e171d"}]},{featureType:"landscape",stylers:[{color:"#1e303d"}]},{featureType:"road",stylers:[{color:"#1e303d"}]},{featureType:"poi.park",stylers:[{color:"#1e303d"}]},{featureType:"transit",stylers:[{color:"#182731"},{visibility:"simplified"}]},{featureType:"poi",elementType:"labels.icon",stylers:[{color:"#f0c514"},{visibility:"off"}]},{featureType:"poi",elementType:"labels.text.stroke",stylers:[{color:"#1e303d"},{visibility:"off"}]},{featureType:"transit",elementType:"labels.text.fill",stylers:[{color:"#e77e24"},{visibility:"off"}]},{featureType:"road",elementType:"labels.text.fill",stylers:[{color:"#FFFFFF"}]},{featureType:"administrative",elementType:"labels",stylers:[{visibility:"simplified"},{color:"#ffffff"}]},{featureType:"poi",stylers:[{color:"#ffffff"},{visibility:"off"}]}]}),infowindow=new google.maps.InfoWindow({content:"",maxWidth:220}),marker,nextset={start_permlink:"",start_author:""};steem.api.getDiscussionsByCreated({select_tags:["mapala"],limit:30},function(e,t){var a,i=t.length,o=i-1;for(a=0;i>a;a++){var n=JSON.parse(t[a].json_metadata);if("undefined"!=typeof n.coordinates&&n.coordinates.length>10){var r=(new Array,"http://i.imgur.com/IyCw18s.png"),l=n.coordinates,s=l.substring(0,l.indexOf(",")),p=l.substring(l.indexOf(",")).substring(1),m="undefined"==typeof n.image?r:n.image[0],d="<h4>"+t[a].title+"</h4><p>"+n.location+"</p><h3>"+t[a].total_payout_value+"/"+t[a].total_pending_payout_value+'</h3><img style="width:100%;height:auto;" src="'+m+'"/><p><p><a href="https://mapala.net/'+t[a].author+"/"+t[a].permlink+'">Читать на MAPALA</a></p>'+t[a].body.replace(/<\/?[^>]+(>|$)/g,"").slice(0,100)+"</p>",f='<div class="item"><b>'+t[a].title+"</b><p>"+n.location+"</p><h3>"+t[a].total_pending_payout_value+"/"+t[a].total_payout_value+'</h3><img width="200" src="'+m+'"/> <p><a href="https://mapala.net/'+t[a].author+"/"+t[a].permlink+'">Читать на MAPALA</a></p><p>'+t[a].body.replace(/<\/?[^>]+(>|$)/g,"").slice(0,100)+"</p></div>";marker=new google.maps.Marker({position:new google.maps.LatLng(s,p),map:map,icon:"https://chain.cf/img/mapalamarker.png"}),bindInfoWindow(marker,map,infowindow,d,f)}a==o&&(nextset={start_permlink:t[o].permlink,start_author:t[o].author},NEXT_POSTS(nextset))}e&&console.log(e)});
+</script>
+  </body>
+</html>
