@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Посты Блога на блокчейн</title>
+    <meta name="description" content="Блог на блокчейне golos.io"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" rel="stylesheet">
+    <link href="styles/main.css?ver=25" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" href="https://golos.io/images/favicons/favicon.ico"/>
+  </head>
+  <body id="top">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"><a href="post.html" id="contact-button" class="mdl-button mdl-button--fab mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast mdl-shadow--4dp"><i class="material-icons">mail</i></a>
+      <header class="mdl-layout__header mdl-layout__header--waterfall site-header">
+        <div class="mdl-layout__header-row site-logo-row"><span class="mdl-layout__title">
+            <div class="site-logo"></div><span class="site-description">Блог @VIK на блокчейн</span></span></div>
+        <div class="mdl-layout__header-row site-navigation-row mdl-layout--large-screen-only">
+          <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font"><a class="mdl-navigation__link" href="index.html">Главная</a>
+		  <a class="mdl-navigation__link" href="portfolio.html">Блог</a>
+		  <a class="mdl-navigation__link" href="bot.html" target="_blank">Бот</a>
+		  <a class="mdl-navigation__link" href="post.html" target="_blank">Постинг</a>
+		  <a class="mdl-navigation__link" href="ex.html" target="_blank">Explorer</a>
+		
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+        <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+		<a class="mdl-navigation__link" href="index.html">Home</a>
+		<a class="mdl-navigation__link" href="portfolio.html">Блог</a>
+		<a class="mdl-navigation__link" href="bot.html" target="_blank">Бот</a>
+		  <a class="mdl-navigation__link" href="post.html" target="_blank">Постинг</a>
+		  <a class="mdl-navigation__link" href="ex.html" target="_blank">Explorer</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="site-content">
+          <div id="blogposts" class="container">
+		  
+		  
+<section class="section--center mdl-grid site-max-width">
+<div class="notice mdl-card-wide site-max-width mdl-card mdl-shadow--4dp mdl-color--teal-400">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Добро пожаловать в блог!</h2>
+  </div>
+  <div class="mdl-card__supporting-text mdl-color-text--white">
+    В будущем загрузка будет моментальная! На данном этапе загрузка длится не быстрее чем в официальном клиенте, однако после загрузки вы моментально получаете доступ к сотне своих последних постов и всем комментариям к ним! Они моментально открываются, когда вы нажимаете кнопку "читать"
+  </div>
+  
+  
+</div>
+<div v-show="loading" id="p2loader" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+</section>
+
+
+<section v-for="post in postslist" class="section--center mdl-grid site-max-width">
+  <header v-if="!post.expand" class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white  mdl-shadow--4dp" >
+    <i class="material-icons">photo</i>
+	<img v-if="post.hasimg" class="article-image" :src="post.img" :alt="post.title" border="0">
+  </header>
+  <div class="mdl-card mdl-cell  mdl-cell--6-col-tablet mdl-cell--4-col-phone  mdl-shadow--4dp "  v-bind:class="{ 'mdl-cell--9-col-desktop': !post.expand, 'mdl-cell--12-col-desktop': post.expand }">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">{{ post.title }}</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+     
+<div class="golos-meta">Комментарии {{post.comments}} <div class="material-icons">comment</div>  Голосование 
+	  {{post.votes}} <div class="material-icons">trending_up</div> 
+	  {{post.reward}} <div class="material-icons">attach_money</div> 
+	   {{post.creward}} <div class="material-icons">group</div>
+	  </div>
+	  
+	  
+     
+	  <div class="postbody" v-if="post.expand" v-html="post.body"></div>
+	  
+	  
+	  <div v-for="comment in comments" v-if="post.expand" class="comment">
+	  <article><strong>{{comment.author}}</strong>
+	 <p>{{comment.body}}</p></article> 
+	 </div>
+
+
+	</div>
+    <div class="mdl-card__actions  mdl-card--border">
+ <button v-if="!post.expand" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" @click="post.expand = true;showComm(post.plink)">Читать</button> <a :href="post.link" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">@{{ post.author }}</a>
+	    <span class="tags">{{ post.tags }}</span>     
+
+	 </div>
+  </div>
+</section>
+
+
+
+
+
+</div>
+        </div>
+        <footer class="mdl-mini-footer">
+          <div class="footer-container">
+            <div class="mdl-logo">&copy; @vik</div>
+            <ul class="mdl-mini-footer__link-list">
+              <li><a href="#">Privacy & Terms</a></li>
+            </ul>
+          </div>
+        </footer>
+      </main>
+	  <script>var indexPage=false,isBlog=true;</script>
+	  <script src="https://code.getmdl.io/1.3.0/material.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.5/vue.min.js"></script>
+<script src="scripts/options.js"></script>
+<script src="scripts/blog.js?ver=25"></script>
+<script src="scripts/mrktohtml.js"></script>
+    </div>
+  </body>
+</html>

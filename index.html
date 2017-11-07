@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Блог на блокчейн</title>
+    <meta name="description" content="Блог на блокчейне golos.io"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css" rel="stylesheet">
+    <link href="styles/main.css" rel="stylesheet">
+	<link rel="icon" type="image/x-icon" href="https://golos.io/images/favicons/favicon.ico"/>
+	  <style>iframe { min-height: 300px; margin: 8px; border-radius: 3px; overflow: hidden; box-shadow: 0 0 12px -2px black; }</style>
+  </head>
+  <body id="top">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"><a href="post.html" id="contact-button" class="mdl-button mdl-button--fab mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--accent mdl-color-text--accent-contrast mdl-shadow--4dp"><i class="material-icons">mail</i></a>
+      <header class="mdl-layout__header mdl-layout__header--waterfall site-header">
+        <div class="mdl-layout__header-row site-logo-row"><span class="mdl-layout__title">
+            <div class="site-logo"></div><span class="site-description">Блог @VIK на блокчейн</span></span></div>
+        <div class="mdl-layout__header-row site-navigation-row mdl-layout--large-screen-only">
+          <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font"><a class="mdl-navigation__link" href="index.html">Главная</a>
+		  <a class="mdl-navigation__link" href="portfolio.html">Блог</a>
+		  <a class="mdl-navigation__link" href="bot.html" target="_blank">Бот</a>
+		  <a class="mdl-navigation__link" href="post.html" target="_blank">Постинг</a>
+		  <a class="mdl-navigation__link" href="ex.html" target="_blank">Explorer</a>
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer mdl-layout--small-screen-only">
+        <nav class="mdl-navigation mdl-typography--body-1-force-preferred-font">
+		<a class="mdl-navigation__link" href="index.html">Главная</a>
+		<a class="mdl-navigation__link" href="portfolio.html">Блог</a>
+		<a class="mdl-navigation__link" href="bot.html" target="_blank">Бот</a>
+		  <a class="mdl-navigation__link" href="post.html" target="_blank">Постинг</a>
+		  <a class="mdl-navigation__link" href="ex.html" target="_blank">Explorer</a>
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="site-content">
+          <div class="container"><div class="mdl-grid site-max-width">
+		  <iframe src="https://chain.chatbro.com" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+    <div class="mdl-cell mdl-cell--12-col mdl-card mdl-shadow--4dp welcome-card portfolio-card">
+	    
+        <div class="mdl-card__title">
+          <h2 class="mdl-card__title-text">Добро пожаловать на блог размещенный в блокчейне golos</h2>
+		
+        </div>
+        <div class="mdl-card__supporting-text">
+        Хотите развернуть собственный блог на базе блокчейна golos.io? Скачайте файлы из репозитория и залейте на хостинг. Если у вас нет хостинга, вы можете использовать опыт данного сайта - создайте аккаунт на github и добавьте файлы в собственный репозиторий назвав его ваше_имя.github.io - это и будет вашим хостингом. Собственный домен можно получить на freenom бесплатно, а в настройках скрипта прописать домен и параметры блога.
+		</div>
+        <div class="mdl-card__actions mdl-card--border">
+          <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="https://github.com/vikxx/vikxx.github.io/" target="_blank">
+            Скачать исходники
+          </a>
+        </div>
+    </div>
+</div>
+
+<section class="section--center mdl-grid site-max-width">
+  <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white  mdl-shadow--4dp">
+    <i class="material-icons">play_circle_filled</i>
+  </header>
+  <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone  mdl-shadow--4dp">
+	  
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">В двух словах - как все работает</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      Вы загружаете html файлы в свой проект на github и подключаете к нему собственный домен. Регистрация бесплатных доменов на freenom. Настроить блог под себя можно добавив свое имя в scripts/options.js</br>
+	  Добавить HTTPS шифрование своему блогу можно с помощью cloudflare. Под капотом связь с блокчейном GOLOS.IO, а так же: vue.js, steem API, Google Material, шифрование от Стэнфорда и многое другое!
+    </div>
+    <div class="mdl-card__actions  mdl-card--border">
+      <a href="https://golos.io/blog/@vik/blogs" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">Подробнее</a>
+    </div>
+  </div>
+</section>
+
+<section id="featured" class="section--center mdl-grid site-max-width">
+    <div v-show="load" id="p2loader" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+	<div v-for="post in posts" class="mdl-cell mdl-card mdl-shadow--4dp portfolio-card">
+        <div class="mdl-card__media">
+            <img v-if="post.hasimg" class="article-image" :src="post.img" :alt="post.title" border="0">
+		</div>
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">{{ post.author }}: {{ post.title }}</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+		 <div class="post-tags">{{ post.tags }}</div>
+	   </div>
+    </div>
+    
+</section>
+
+<section class="section--center mdl-grid site-max-width homepage-portfolio">
+    <a class="mdl-button mdl-button--raised mdl-js-button mdl-js-ripple-effect mdl-button--accent" href="portfolio.html">Все записи блога</a>
+</section>
+
+<div class="homepage-footer">
+  <section class="mdl-grid site-max-width">
+      <div class="mdl-cell mdl-card mdl-cell--8-col mdl-cell--4-col-tablet  mdl-shadow--4dp portfolio-card">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Комментарии</h2>
+        </div>
+        <ul id="replies" class="demo-list-three mdl-list">
+            <li v-for="replie in replies" class="mdl-list__item mdl-list__item--three-line">
+              <span class="mdl-list__item-primary-content">
+                <i class="material-icons mdl-list__item-avatar">star</i>
+                <span> {{replie.author}}</span>
+                <span class="mdl-list__item-text-body">
+                  {{replie.body}}
+                </span>
+              </span>
+            </li>
+            
+        </ul>
+      </div>
+      <div class="demo-card-event mdl-cell mdl-card mdl-shadow--4dp event-card portfolio-card">
+        <div class="mdl-card__title mdl-card--expand">
+          <h4>
+            <br>
+            Комментарии слева отображаются для заданной в настройках записи, например для закрепленного поста.
+            <br>
+            
+          </h4>
+        </div>
+        <div class="mdl-card__actions mdl-card--border">
+          
+          <div class="mdl-layout-spacer"></div>
+          <i class="material-icons">chat</i>
+        </div>
+      </div>
+  </section>
+</div>
+
+
+
+<div class="homepage-footer">
+ 
+  <section class="section--center mdl-grid site-max-width">
+  <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-900 mdl-color-text--white  mdl-shadow--4dp">
+    <i class="material-icons">trending_up</i>
+  </header>
+  <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone  mdl-shadow--4dp">
+    <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Выполненные задачи и планы на будущее</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      Функционал, который будет добавлен в ближайшее время
+    </div>
+	<ul class="demo-list-control mdl-list">
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+     Скрипт отображает посты из вашего блога + все комментарии к ним 
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+      </label>
+    </span>
+  </li>
+  
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+      Добавлен файл настроек, в котором можно указать свой ник и некоторые данные
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+      </label>
+    </span>
+  </li>
+  
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+      Добавлен бот и страница прямого редактора (постинг в блокчейн)
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" checked />
+      </label>
+    </span>
+  </li>
+  
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+      Добавить невероятную скорость благодаря PWA, service worker's и local storage
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" unchecked />
+      </label>
+    </span>
+  </li>
+  
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+      Возможность принимать апвоуты прямо на своем сайте (хранение зашифрованных постинг-ключей в local storage посетителей)
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" unchecked />
+      </label>
+    </span>
+  </li>
+  
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+      Добавить десятки разных виджетов и ленту чужих постов (в т.ч. фильтрованной) с голоса.
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" unchecked />
+      </label>
+    </span>
+  </li>
+  
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+      Создать области для вывода всего масштаба информации с голоса
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" unchecked />
+      </label>
+    </span>
+  </li>
+  
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+      Добавить гибкость настройкам для быстрого разворачивания
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" unchecked />
+      </label>
+    </span>
+  </li>
+  
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+      Добавить настройки, актуальные и новейшие мета-теги для SEO
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" unchecked />
+      </label>
+    </span>
+  </li>
+  
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+      Оптимизировать код сделать более тесную интеграцию с VUE.js
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" unchecked />
+      </label>
+    </span>
+  </li>
+  
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+      Встроить скрипт в плагин для Wordpress и других CMS
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" unchecked />
+      </label>
+    </span>
+  </li>
+  
+  <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">star</i>
+      Реализовать идею шифрования постов во время постинга, что бы читать можно было только с вашего сайта.
+    </span>
+    <span class="mdl-list__item-secondary-action">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-1">
+        <input type="checkbox" id="list-checkbox-1" class="mdl-checkbox__input" unchecked />
+      </label>
+    </span>
+  </li>
+  
+  
+  
+  
+  </ul>
+    <div class="mdl-card__actions  mdl-card--border">
+      <a href="https://github.com/vikxx/vikxx.github.io/" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect mdl-button--accent">Подробнее на github</a>
+    </div>
+  </div>
+</section>
+</div>
+
+
+
+
+
+</div>
+        </div>
+        <footer class="mdl-mini-footer">
+          <div class="footer-container">
+            <div class="mdl-logo">&copy; <a href="https://golos.io/@vik" target="_blank">golos.io/@vik</a></div>
+            <ul class="mdl-mini-footer__link-list">
+              <li><a href="#">Privacy & Terms</a></li>
+            </ul>
+          </div>
+        </footer>
+      </main>
+<script src="https://code.getmdl.io/1.3.0/material.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.5/vue.min.js"></script>
+<script>var indexPage=true,isBlog=false;</script>
+<script src="scripts/options.js"></script>
+<script src="scripts/blog.js"></script>
+    </div>
+	
+  </body>
+</html>
