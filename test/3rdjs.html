@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<title>Безопасные 3rd скрипты</title>
+<style>
+ iframe {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    min-height: 250px;
+    border: 0;
+}
+body {
+    background: #0a0a0a;
+    color: white;
+    font-family: arial;
+}
+h2 {
+    text-align: center;
+}
+ pre {
+    background: white;
+    color: black;
+    padding: 10px;
+    font-size: 10px;
+}
+</style>
+</head>
+<body>
+<h2>Безопасное встраивание скриптов из непроверенных источников</h2>
+ <p>Метод базируется на том, что браузер не даст украсть данные скрипту если он загружен в рамках iframe содержимое которого находится 
+ на отдельном домене. В сочетании с iframe SANDBOX и правильно настроенными CSP политиками на вашем домене метод делает встраивание библиотек из
+ третьих источников безопасным</p>
+  
+<iframe src="https://upvote.ml/chat/index.html" sandbox="allow-forms allow-scripts allow-same-origin"></iframe>
+<h3>Чат встроен c помощью inline iframe c атрибутами SANDBOX</h3>
+ <pre> 
+&lt;iframe src="https://upvote.ml/chat/index.html" sandbox="allow-same-origin allow-forms allow-scripts" &gt;&lt;/iframe>&lt;/pr&gt;
+</pre>
+<p>Если нужно встроить чат с заданными параметрами - можно разместить JS инициализации чата на своем домене отличном от домена биржи и не на сабдомене, далее добавить адрес на страницу чата как в примере выше.</p>
+<p>Например можно просто создать бесплатный html хостинг на github, создать index.html с инициализированным чатом, а далее вставить с помощью inline iframe с адресом репозитория блок на биржу</p>
+
+  
+</body>
+</html>
